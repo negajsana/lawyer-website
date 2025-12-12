@@ -1,56 +1,70 @@
-<html lang="uk">
-</nav>
-<div class="burger" id="burger">☰</div>
-</div>
-</header>
+<section data-bs-version="5.1" class="header01 legalm5" group="Headers" data-bg-video="{{bg.type == 'video' && bg.value.url}}" mbr-class="{
+    'mbr-fullscreen': fullScreen,
+    'mbr-parallax-background': bg.parallax}">
+    <mbr-parameters>
+        <header>Size</header>
+        <input type="checkbox" title="Full Screen" name="fullScreen">
+        <input type="checkbox" title="Full Width" name="fullWidth" checked>
+        <input type="range" inline title="Top" name="paddingTop" min="0" max="12" step="1" value="5" condition="fullScreen == false">
+        <input type="range" inline title="Bottom" name="paddingBottom" min="0" max="12" step="1" value="5" condition="fullScreen == false">
+        <input type="checkbox" title="Reverse" name="reverseContent" checked>
+        <header>Show/Hide</header>
+        <input type="checkbox" title="Title" name="showTitle" checked>
+        <input type="checkbox" title="Link" name="showLink">
+        <input type="color" title="Active Color" value="#01004C" name="active" condition="showLink" selected>
+        <input type="checkbox" title="Description" name="showDesc" checked>
+        <input type="checkbox" title="Text" name="showText" checked>
+        <input type="checkbox" title="Buttons" name="showButtons" checked>
+        <input type="checkbox" title="Decoration" name="showDecor" checked>
+        <input type="color" title="Decoration Color" value="#072037" name="decor" selected condition="showDecor">
+        <input type="color" title="Shadow Color" value="#F1F4F7" name="shadow" selected condition="showDecor">
+        <header>Background</header>
+        <fieldset type="background" name="bg" parallax>
+            <input type="image" title="Image" value="../_images/background1.jpg">
+            <input type="color" title="Color" value="#f1f1f1" selected>
+            <input type="video" title="Video" value="https://vimeo.com/428046504">
+        </fieldset>
+        <input type="checkbox" title="Transparent" name="transparentBg" condition="bg.type === 'color'" checked>
+        <header condition="bg.type === 'video'">Fallback Image</header>
+        <input type="image" title="Fallback Image" value="../_images/background1.jpg" name="fallBackImage" condition="bg.type === 'video'">
+        <input type="checkbox" title="Overlay" name="overlay" condition="bg.type !== 'color'">
+        <input type="color" title="Overlay Color" name="overlayColor" value="#f1f1f1" condition="overlay && bg.type !== 'color'">
+        <input type="range" inline title="Opacity" name="overlayOpacity" min="0" max="1" step="0.1" value="0.8" condition="overlay && bg.type !== 'color'">
+    </mbr-parameters>
 
+    <div class="mbr-fallback-image disabled" mbr-if="bg.type == 'video'"></div>
+    <div class="mbr-overlay" mbr-if="overlay && bg.type !== 'color'" opacity="{{overlayOpacity}}" bg-color="{{overlayColor}}"></div>
 
-<section class="hero fade-in">
-<div class="container">
-<h1>Адвокатське бюро «Свій Юрист»</h1>
-<p>Адвокат Серкін Костянтин Юрійович — 15 років досвіду</p>
-<a href="#contacts" class="btn">Зв'язатися</a>
-</div>
+    <div mbr-class="{'container': !fullWidth, 'container-fluid': fullWidth}">
+        <div class="row" mbr-class="{'flex-row-reverse' : reverseContent}">
+            <div class="col-12 col-lg-5">
+                <div class="desc-wrapper" mbr-if="showDesc">
+                    <p class="mbr-desc mbr-fonts-style" mbr-theme-style="display-7" data-app-selector=".mbr-desc">Ваш щит</p>
+                </div>
+            </div>
+            <div class="col-12">
+                <div href="#" class="title-wrapper" mbr-if="showTitle">
+                    <h1 class="mbr-section-title mbr-fonts-style" data-app-selector=".mbr-section-title, .mbr-section-btn" mbr-theme-style="display-1">Свій Юрист</h1>
+                </div>
+            </div>
+            <div class="col-12 col-lg-9">
+                <a href="#" class="link-wrapper" mbr-if="showLink">
+                    <p class="mbr-link mbr-fonts-style" data-app-selector=".mbr-link" mbr-theme-style="display-1">
+                        ↳ attorney
+                    </p>
+                </a>
+            </div>
+            <div class="col-12 col-lg-7">
+                <div class="text-wrapper" mbr-if="showText || showButtons">
+                    <div class="text-wrap">
+                         <p class="mbr-text mbr-fonts-style" mbr-theme-style="display-7" mbr-if="showText" data-app-selector=".mbr-text, .text-wrap">Ми тут, щоб захистити ваші права та інтереси. Звертайтеся до нас за професійною юридичною допомогою.</p>
+                    </div>
+                    <div mbr-buttons="" mbr-theme-style="display-7" class="mbr-section-btn" mbr-if="showButtons" data-toolbar="-mbrBtnMove">
+                        <a class="btn btn-primary" href="https://mobiri.se" data-app-placeholder="Type Text">Зв&#x27;язатись</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="decor-wrap" mbr-if="showDecor"></div>
 </section>
-
-
-<section id="services" class="services container fade-in">
-<h2>Послуги</h2>
-<div class="services-grid">
-<div class="card slide-up">Кримінальні справи</div>
-<div class="card slide-up">Цивільні справи</div>
-<div class="card slide-up">Сімейні спори</div>
-<div class="card slide-up">Господарські справи</div>
-<div class="card slide-up">Адміністративні справи</div>
-<div class="card slide-up">Супровід бізнесу</div>
-</div>
-</section>
-
-
-<section id="about" class="about container fade-in">
-<h2>Про мене</h2>
-<p>
-Адвокат Серкін Костянтин Юрійович<br />
-Стаж роботи: 15 років
-</p>
-</section>
-
-
-<section id="contacts" class="contacts container fade-in">
-<h2>Контакти</h2>
-<p>Адреса: 14000, м. Чернігів, вул. Мстиславська, 9, офіс 213</p>
-<p>Email: kserkin@gmail.com</p>
-<p>Телефон: +38063-1884-905</p>
-
-
-<h3>Форма зворотного зв'язку</h3>
-<form class="contact-form" action="https://formspree.io/f/mzzbwnqv" method="POST">
-<input type="text" name="name" placeholder="Ваше ім'я" required />
-<input type="email" name="email" placeholder="Ваш Email" required />
-<input type="tel" name="phone" placeholder="Ваш телефон" required />
-<textarea name="message" placeholder="Ваше повідомлення" required></textarea>
-<button type="submit">Відправити</button>
-</form>
-</section>
-</body>
-</html>
